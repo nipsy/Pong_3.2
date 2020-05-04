@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ball.gd" type="Script" id=2]
+[ext_resource path="res://game.gd" type="Script" id=3]
+[ext_resource path="res://paddle.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 160, 2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 100 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 2.0
+
+[node name="game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="walls" type="Node" parent="."]
+
+[node name="top" type="StaticBody2D" parent="walls"]
+position = Vector2( 160, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/top"]
+shape = SubResource( 1 )
+
+[node name="bottom" type="StaticBody2D" parent="walls"]
+position = Vector2( 160, 200 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom"]
+shape = SubResource( 1 )
+
+[node name="left" type="StaticBody2D" parent="walls"]
+position = Vector2( 0, 100 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/left"]
+shape = SubResource( 2 )
+
+[node name="right" type="StaticBody2D" parent="walls"]
+position = Vector2( 320, 100 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/right"]
+shape = SubResource( 2 )
+
+[node name="paddles" type="Node" parent="."]
+
+[node name="left" parent="paddles" instance=ExtResource( 4 )]
+position = Vector2( 12, 100 )
+
+[node name="right" parent="paddles" instance=ExtResource( 4 )]
+position = Vector2( 308, 100 )
+
+[node name="ball" type="KinematicBody2D" parent="."]
+position = Vector2( 160, 100 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="ball"]
+margin_left = -2.0
+margin_top = -2.0
+margin_right = 38.0
+margin_bottom = 38.0
+rect_scale = Vector2( 0.1, 0.1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scores" type="Node" parent="."]
+
+[node name="left" type="Label" parent="scores"]
+margin_left = 120.0
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="Label" parent="scores"]
+margin_left = 162.0
+margin_top = 4.0
+margin_right = 202.0
+margin_bottom = 18.0
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
