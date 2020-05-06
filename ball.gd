@@ -63,7 +63,7 @@ func _physics_process(delta):
 				return_angle = 5
 				
 			# set return angle as random float +-5 degrees from our initial offset
-			return_angle = rand_range(return_angle -5, return_angle + 5)
+			return_angle = rand_range(-return_angle, return_angle)
 			
 			# calculate the actual bounce vector for this collision and
 			# adjust angle by the random return agnle offset; also increases
